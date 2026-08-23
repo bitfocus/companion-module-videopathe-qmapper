@@ -1,6 +1,6 @@
 {
   "name": "companion-module-videopathe-qmapper",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Bitfocus Companion module for QMapper",
   "main": "dist/main.js",
   "type": "module",
