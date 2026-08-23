@@ -15,10 +15,10 @@ Control **QMapper** (video mapping & playback, Android) from Bitfocus Companion 
 ## What you can control
 
 - **Playlist** — play, pause, stop, next, previous, play a specific index, toggle an item, reload, and settings (repeat mode, auto-restart, source transition).
-- **Sources** — switch the active source between Playlist, NDI, OMT and SRT (with fade/cut transition).
+- **Sources** — switch the active source between Playlist, NDI, OMT, SRT, RTSP and USB capture (with fade/cut transition), and disconnect the RTSP / USB / WebRTC inputs.
 - **Output** — blackout (toggle / on / off).
 - **Warp / mapping** — show the mapping grid, main output visibility, per-layer visibility, colour correction.
-- **Sync** — MQTT sync mode (Off / Master / Slave).
+- **Sync** — inter-device sync mode (Off / Master / Slave) and the MQTT transport toggle.
 - **App** — UI language.
 
 ## Notable feedbacks & presets

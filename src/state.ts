@@ -41,8 +41,15 @@ export function namedLayers(layers: WarpLayer[] | undefined): WarpLayer[] {
 }
 
 export function findLayerByName(layers: WarpLayer[] | undefined, name: string): WarpLayer | undefined {
-	const target = String(name ?? '').trim().toLowerCase()
-	return (layers ?? []).find((layer) => String(layer.name ?? '').trim().toLowerCase() === target)
+	const target = String(name ?? '')
+		.trim()
+		.toLowerCase()
+	return (layers ?? []).find(
+		(layer) =>
+			String(layer.name ?? '')
+				.trim()
+				.toLowerCase() === target,
+	)
 }
 
 export interface QMapperControl {

@@ -57,7 +57,8 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 			type: 'boolean',
 			defaultStyle: { bgcolor: combineRgb(99, 102, 241), color: combineRgb(255, 255, 255) },
 			options: [{ id: 'index', type: 'number', label: 'Index (0-based)', default: 0, min: 0, max: 9999 }],
-			callback: (feedback) => safeNumber(self.status?.playlist?.current?.currentIndex, -1) === Number(feedback.options.index),
+			callback: (feedback) =>
+				safeNumber(self.status?.playlist?.current?.currentIndex, -1) === Number(feedback.options.index),
 		},
 
 		// ---- Blackout ----
@@ -120,8 +121,11 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 			name: 'Active source matches',
 			type: 'boolean',
 			defaultStyle: { bgcolor: combineRgb(16, 185, 129), color: combineRgb(0, 0, 0) },
-			options: [{ id: 'mode', type: 'dropdown', label: 'Source', default: 'playlist', choices: SOURCE_MODE_MATCH_CHOICES }],
-			callback: (feedback) => sourceModeGroup(self.status?.playlist?.current?.sourceMode) === String(feedback.options.mode),
+			options: [
+				{ id: 'mode', type: 'dropdown', label: 'Source', default: 'playlist', choices: SOURCE_MODE_MATCH_CHOICES },
+			],
+			callback: (feedback) =>
+				sourceModeGroup(self.status?.playlist?.current?.sourceMode) === String(feedback.options.mode),
 		},
 		sync_mode: {
 			name: 'Sync mode matches',

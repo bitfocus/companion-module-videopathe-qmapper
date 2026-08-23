@@ -152,7 +152,9 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 					{ signal: controller.signal },
 				).catch(() => undefined),
 				fetchJson<{ layers?: WarpLayer[] }>(`${base}/api/warp`, { signal: controller.signal }).catch(() => undefined),
-				fetchJson<{ isBlackout?: boolean }>(`${base}/api/blackout`, { signal: controller.signal }).catch(() => undefined),
+				fetchJson<{ isBlackout?: boolean }>(`${base}/api/blackout`, { signal: controller.signal }).catch(
+					() => undefined,
+				),
 				fetchJson<{ language?: string }>(`${base}/api/language`, { signal: controller.signal }).catch(() => undefined),
 			])
 			if (controller !== this.abortController) return

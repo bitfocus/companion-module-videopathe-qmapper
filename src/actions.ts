@@ -76,7 +76,13 @@ export function UpdateActions(self: ModuleInstance): void {
 			options: [
 				{ id: 'repeatMode', type: 'dropdown', label: 'Repeat mode', default: 0, choices: REPEAT_MODE_CHOICES },
 				{ id: 'autoRestart', type: 'checkbox', label: 'Auto restart', default: false },
-				{ id: 'transition', type: 'dropdown', label: 'Source transition', default: 'fade', choices: TRANSITION_CHOICES },
+				{
+					id: 'transition',
+					type: 'dropdown',
+					label: 'Source transition',
+					default: 'fade',
+					choices: TRANSITION_CHOICES,
+				},
 				{ id: 'fadeMs', type: 'number', label: 'Transition duration (ms)', default: 800, min: 0, max: 60000 },
 			],
 			callback: async (event) =>

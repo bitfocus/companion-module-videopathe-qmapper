@@ -36,7 +36,9 @@ export function UpdatePresets(self: ModuleInstance): void {
 			category,
 			name,
 			style: { show_topbar: false, ...style },
-			steps: actions.length ? [{ down: actions.map((a) => ({ actionId: a.actionId, options: a.options ?? {} })), up: [] }] : [{ down: [], up: [] }],
+			steps: actions.length
+				? [{ down: actions.map((a) => ({ actionId: a.actionId, options: a.options ?? {} })), up: [] }]
+				: [{ down: [], up: [] }],
 			feedbacks: [disconnected, ...feedbacks],
 		}
 	}
@@ -50,10 +52,18 @@ export function UpdatePresets(self: ModuleInstance): void {
 		[{ actionId: 'playlist_play' }],
 		[{ feedbackId: 'playlist_playing', options: {}, style: { bgcolor: combineRgb(34, 197, 94), color: BLACK } }],
 	)
-	button('playlist_pause', 'Playlist', 'Pause', { text: '⏸ PAUSE', size: '18', color: WHITE, bgcolor: PANEL }, [{ actionId: 'playlist_pause' }])
-	button('playlist_stop', 'Playlist', 'Stop', { text: '⏹ STOP', size: '18', color: WHITE, bgcolor: PANEL }, [{ actionId: 'playlist_stop' }])
-	button('playlist_prev', 'Playlist', 'Previous', { text: '⏮ PREV', size: '18', color: WHITE, bgcolor: PANEL }, [{ actionId: 'playlist_prev' }])
-	button('playlist_next', 'Playlist', 'Next', { text: '⏭ NEXT', size: '18', color: WHITE, bgcolor: PANEL }, [{ actionId: 'playlist_next' }])
+	button('playlist_pause', 'Playlist', 'Pause', { text: '⏸ PAUSE', size: '18', color: WHITE, bgcolor: PANEL }, [
+		{ actionId: 'playlist_pause' },
+	])
+	button('playlist_stop', 'Playlist', 'Stop', { text: '⏹ STOP', size: '18', color: WHITE, bgcolor: PANEL }, [
+		{ actionId: 'playlist_stop' },
+	])
+	button('playlist_prev', 'Playlist', 'Previous', { text: '⏮ PREV', size: '18', color: WHITE, bgcolor: PANEL }, [
+		{ actionId: 'playlist_prev' },
+	])
+	button('playlist_next', 'Playlist', 'Next', { text: '⏭ NEXT', size: '18', color: WHITE, bgcolor: PANEL }, [
+		{ actionId: 'playlist_next' },
+	])
 	button(
 		'playlist_shuffle',
 		'Playlist',
@@ -68,7 +78,12 @@ export function UpdatePresets(self: ModuleInstance): void {
 		'now_playing',
 		'Now playing',
 		'Now playing (name + index)',
-		{ text: `${variable('current_filename')}\\n${variable('enabled_index')}/${variable('enabled_count')}`, size: '14', color: WHITE, bgcolor: combineRgb(15, 23, 35) },
+		{
+			text: `${variable('current_filename')}\\n${variable('enabled_index')}/${variable('enabled_count')}`,
+			size: '14',
+			color: WHITE,
+			bgcolor: combineRgb(15, 23, 35),
+		},
 		[{ actionId: 'playlist_play' }],
 		[{ feedbackId: 'playlist_playing', options: {}, style: { bgcolor: combineRgb(20, 60, 30), color: WHITE } }],
 	)
@@ -84,7 +99,12 @@ export function UpdatePresets(self: ModuleInstance): void {
 		'progress_percent',
 		'Now playing',
 		'Progress percent readout',
-		{ text: `${variable('progress_percent')}%\\n${variable('position')}`, size: '18', color: WHITE, bgcolor: combineRgb(15, 23, 35) },
+		{
+			text: `${variable('progress_percent')}%\\n${variable('position')}`,
+			size: '18',
+			color: WHITE,
+			bgcolor: combineRgb(15, 23, 35),
+		},
 		[],
 	)
 
@@ -103,8 +123,19 @@ export function UpdatePresets(self: ModuleInstance): void {
 			'Sources',
 			`Switch to ${source.label}`,
 			{ text: source.label, size: '14', color: WHITE, bgcolor: PANEL },
-			[{ actionId: 'source_switch', options: { sourceMode: source.id, transition: 'fade', fadeMs: 800, usbDeviceKey: '' } }],
-			[{ feedbackId: 'source_mode', options: { mode: source.id }, style: { bgcolor: combineRgb(16, 185, 129), color: BLACK } }],
+			[
+				{
+					actionId: 'source_switch',
+					options: { sourceMode: source.id, transition: 'fade', fadeMs: 800, usbDeviceKey: '' },
+				},
+			],
+			[
+				{
+					feedbackId: 'source_mode',
+					options: { mode: source.id },
+					style: { bgcolor: combineRgb(16, 185, 129), color: BLACK },
+				},
+			],
 		)
 	}
 	button(
@@ -113,7 +144,13 @@ export function UpdatePresets(self: ModuleInstance): void {
 		'WebRTC active (indicator + disconnect)',
 		{ text: 'WEBRTC', size: '18', color: WHITE, bgcolor: PANEL },
 		[{ actionId: 'source_disconnect', options: { input: 'webrtc' } }],
-		[{ feedbackId: 'source_mode', options: { mode: 'webrtc' }, style: { bgcolor: combineRgb(16, 185, 129), color: BLACK } }],
+		[
+			{
+				feedbackId: 'source_mode',
+				options: { mode: 'webrtc' },
+				style: { bgcolor: combineRgb(16, 185, 129), color: BLACK },
+			},
+		],
 	)
 	button(
 		'source_disconnect',
@@ -159,7 +196,13 @@ export function UpdatePresets(self: ModuleInstance): void {
 			`Layer: ${layerName}`,
 			{ text: layerName, size: '14', color: WHITE, bgcolor: PANEL },
 			[{ actionId: 'warp_visibility_layer', options: { name: layerName, state: 'toggle' } }],
-			[{ feedbackId: 'warp_layer_visible', options: { name: layerName }, style: { bgcolor: combineRgb(34, 197, 94), color: BLACK } }],
+			[
+				{
+					feedbackId: 'warp_layer_visible',
+					options: { name: layerName },
+					style: { bgcolor: combineRgb(34, 197, 94), color: BLACK },
+				},
+			],
 		)
 	}
 
@@ -176,7 +219,13 @@ export function UpdatePresets(self: ModuleInstance): void {
 			`Sync ${mode.label.replace('\\n', ' ')}`,
 			{ text: mode.label, size: '14', color: WHITE, bgcolor: PANEL },
 			[{ actionId: 'sync_mode', options: { syncMode: mode.id } }],
-			[{ feedbackId: 'sync_mode', options: { mode: mode.id }, style: { bgcolor: combineRgb(59, 130, 246), color: WHITE } }],
+			[
+				{
+					feedbackId: 'sync_mode',
+					options: { mode: mode.id },
+					style: { bgcolor: combineRgb(59, 130, 246), color: WHITE },
+				},
+			],
 		)
 	}
 	button(
@@ -195,7 +244,13 @@ export function UpdatePresets(self: ModuleInstance): void {
 		'Language FR',
 		{ text: 'FR', size: '24', color: WHITE, bgcolor: PANEL },
 		[{ actionId: 'language', options: { language: 'fr' } }],
-		[{ feedbackId: 'language_matches', options: { value: 'fr' }, style: { bgcolor: combineRgb(59, 130, 246), color: WHITE } }],
+		[
+			{
+				feedbackId: 'language_matches',
+				options: { value: 'fr' },
+				style: { bgcolor: combineRgb(59, 130, 246), color: WHITE },
+			},
+		],
 	)
 	button(
 		'language_en',
@@ -203,22 +258,41 @@ export function UpdatePresets(self: ModuleInstance): void {
 		'Language EN',
 		{ text: 'EN', size: '24', color: WHITE, bgcolor: PANEL },
 		[{ actionId: 'language', options: { language: 'en' } }],
-		[{ feedbackId: 'language_matches', options: { value: 'en' }, style: { bgcolor: combineRgb(59, 130, 246), color: WHITE } }],
+		[
+			{
+				feedbackId: 'language_matches',
+				options: { value: 'en' },
+				style: { bgcolor: combineRgb(59, 130, 246), color: WHITE },
+			},
+		],
 	)
 
 	// ---- Readouts ----
-	button('readout_status', 'Readouts', 'Connection status', {
-		text: `QMapper\\n${variable('connection_status')}\\n${variable('source_mode_label')}`,
-		size: '14',
-		color: WHITE,
-		bgcolor: combineRgb(15, 23, 35),
-	}, [], [{ feedbackId: 'connected', options: {}, style: { bgcolor: combineRgb(20, 60, 30), color: WHITE } }])
-	button('readout_system', 'Readouts', 'System (CPU / FPS / temp)', {
-		text: `CPU ${variable('cpu_usage')}%\\nFPS ${variable('fps')}\\n${variable('cpu_temp')}°C`,
-		size: '14',
-		color: WHITE,
-		bgcolor: combineRgb(15, 23, 35),
-	}, [])
+	button(
+		'readout_status',
+		'Readouts',
+		'Connection status',
+		{
+			text: `QMapper\\n${variable('connection_status')}\\n${variable('source_mode_label')}`,
+			size: '14',
+			color: WHITE,
+			bgcolor: combineRgb(15, 23, 35),
+		},
+		[],
+		[{ feedbackId: 'connected', options: {}, style: { bgcolor: combineRgb(20, 60, 30), color: WHITE } }],
+	)
+	button(
+		'readout_system',
+		'Readouts',
+		'System (CPU / FPS / temp)',
+		{
+			text: `CPU ${variable('cpu_usage')}%\\nFPS ${variable('fps')}\\n${variable('cpu_temp')}°C`,
+			size: '14',
+			color: WHITE,
+			bgcolor: combineRgb(15, 23, 35),
+		},
+		[],
+	)
 
 	self.setPresetDefinitions(presets)
 }
